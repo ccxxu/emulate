@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:include="include :: header('单位管理')" />
+    </head>
+    <body class="gray-bg">
+        <div class="container-div">
+            <div class="row">
+                <div class="col-sm-12 search-collapse">
+                    <form id="dept-form">
+                        <div class="select-list">
+                            <ul>
+                                <li>
+                                    单位名称：<input type="text" name="an"/>
+                                </li>
+                                </li>
+                                <li>
+                                    <a class="btn btn-primary btn-rounded btn-sm" onclick="$.treeTable.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                    <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="btn-group-sm" id="toolbar" role="group">
+                    <a class="btn btn-success" onclick="$.operate.add(1)">
+                        <i class="fa fa-plus"></i> 新增
+                    </a>
+                    <a class="btn btn-primary" onclick="$.operate.edit()">
+                        <i class="fa fa-edit"></i> 修改
+                    </a>
+                    <a class="btn btn-info" id="expandAllBtn">
+                        <i class="fa fa-exchange"></i> 展开/折叠
+                    </a>
+                </div>
+                <div class="col-sm-12 select-table table-striped">
+                    <table id="bootstrap-tree-table"></table>
+                </div>
+            </div>
+        </div>
+        <th:block th:include="include :: footer" />
+        <script th:inline="javascript">
+            var addFlag = "";
+            var editFlag = "";
+            var removeFlag = "";
+            var datas = "";
+            var prefix = ctx + "admin/dept";
+
+            $(function() {
+                var options = {
+                    code: "userId",
+                    parentCode: "superId",
+                    uniqueId: "userId",
+                    rootIdValue: -1,
+                    url: prefix + "/list",
+                    createUrl: prefix + "/add/{id}",
+                    updateUrl: prefix + "/edit/{id}",
+                    removeUrl: prefix + "/remove/{id}",
+                    modalName: "单位",
+                    columns: [{
+                        field: 'selectItem',
+                        radio: true
+                    }, {
+                        field: 'userId',
+                        title: '序列号',
+                        align: "center"
+                    }, {
+                        field: 'abbrName',
+                        title: '单位名称',
+                        align: "left"
+                    }, {
+                        field: 'displayOrder',
+                        title: '排序',
+                        align: "left"
+                    }, {
+                        field: 'status',
+                        title: '状态',
+                        align: "left",
+                        formatter: function(value, item, index) {
+                            //return $.table.selectDictLabel(datas, item.status);
+                            return statusTools(item);
+                        }
+                    }, {
+                        field: 'createDate',
+                        title: '创建时间',
+                        align: "left"
+                    }, {
+                        title: '操作',
+                        align: 'left',
+                        formatter: function(value, row, index) {
+                            var actions = [];
+                            actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.userId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                            actions.push('<a class="btn btn-info  btn-xs ' + addFlag + '" href="javascript:void(0)" onclick="$.operate.add(\'' + row.userId + '\')"><i class="fa fa-plus"></i>新增</a> ');
+                            actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.userId + '\')"><i class="fa fa-trash"></i>删除</a>');
+                            return actions.join('');
+                        }
+                    }]
+                };
+                $.treeTable.init(options);
+            });
+
+            /* 单位状态显示 */
+            function statusTools(row) {
+                if (row.status == 1) {
+                    return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.roleId + '\')"></i> ';
+                } else {
+                    return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.roleId + '\')"></i> ';
+                }
+            }
+        </script>
+    </body>
+</html>

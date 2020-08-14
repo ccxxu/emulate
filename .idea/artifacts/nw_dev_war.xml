@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="nw-dev:war">
+    <output-path>$PROJECT_DIR$/nw-dev/target</output-path>
+    <root id="archive" name="nw-dev-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="nw-dev:war exploded" />
+    </root>
+  </artifact>
+</component>

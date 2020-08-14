@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+    <head>
+        <th:block th:include="include :: header('新增资源')" />
+        <script type="text/javascript">
+
+            function submitHandler() {
+                if ($.validate.form()) {
+                    edit();
+                }
+            }
+
+            function edit() {
+                $("input[id='showmenu']").val($("input[id='showmenu']").is(':checked'));
+                $("input[id='state']").val($("input[id='state']").is(':checked')==true ? 'open' : 'closed');
+                $.ajax({
+                    cache : true,
+                    type : "POST",
+                    url : ctx + "admin/resource/save",
+                    data : $("#form-resource-edit").serialize(),
+                    async : false,
+                    error : function(request) {
+                        $.modal.alertError("系统错误");
+                    },
+                    success : function(data) {
+                        $.operate.successCallback(data);
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body class="white-bg">
+        <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+            <form class="form-horizontal m" id="form-resource-edit" th:object="${resource}">
+                <input id="fdid" name="fdid" type="hidden" th:field="*{fdid}" />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">资源编号：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="id" id="id" th:field="*{id}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">资源名称：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="name" id="name" th:field="*{name}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">上级资源ID：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" readonly type="text" name="pid" id="pid" th:field="*{pid}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">状态：</label>
+                    <div class="col-sm-8">
+                        <label class="toggle-switch switch-solid">
+                            <input type="checkbox" id="showmenu" name="showmenu" th:checked="*{showmenu}">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">叶子节点：</label>
+                    <div class="col-sm-8">
+                        <label class="toggle-switch switch-solid">
+                            <input type="checkbox" id="state" name="state" th:checked="*{state=='open' ? true : false}">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">资源URL：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="url" id="url" th:field="*{url}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">显示顺序：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="ordernum" id="ordernum" th:field="*{ordernum}" required>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <th:block th:include="include :: footer" />
+    </body>
+</html>

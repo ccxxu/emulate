@@ -1,0 +1,17 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /test
+security:
+  oauth2:
+    client:
+      client-id: UserManagement
+      client-secret: user123
+      access-token-uri: http://localhost:8080/oauth/token
+      user-authorization-uri: http://localhost:8080/oauth/authorize
+    resource:
+      jwt:
+        key-uri: http://localhost:8080/oauth/token_key
+spring:
+  main:
+    allow-bean-definition-overriding: true

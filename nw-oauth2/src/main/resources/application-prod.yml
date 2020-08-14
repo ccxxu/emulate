@@ -1,0 +1,26 @@
+spring:
+    devtools:
+        restart:
+            enabled: false
+        livereload:
+            enabled: false
+    datasource:
+        url: jdbc:oracle:thin:@localhost:1521:orcl
+        name:
+        username: ca
+        password: ciecc2019
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+    h2:
+        console:
+            enabled: false
+    jpa:
+        database-platform: org.hibernate.dialect.Oracle10gDialect
+        generate-ddl: true
+        show-sql: false
+        properties:
+            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+        database: oracle
+#            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/nw-admin" />
+    <file type="web" url="file://$PROJECT_DIR$/nw-auth" />
+    <file type="web" url="file://$PROJECT_DIR$/nw-dev" />
+    <file type="web" url="file://$PROJECT_DIR$/nw-oauth2" />
+    <file type="web" url="file://$PROJECT_DIR$/nw-test" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-common/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-server/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-user/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-test/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-oauth2/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-dev/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-generator/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

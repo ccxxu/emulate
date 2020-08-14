@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+    <head>
+        <th:block th:include="include :: header('新增客户端')" />
+        <script type="text/javascript">
+
+            function submitHandler() {
+                if ($.validate.form()) {
+                    add();
+                }
+            }
+
+            function add() {
+                $("input[id='enable']").val($("input[id='enable']").is(':checked') == true ? 1 : 0);
+                $.ajax({
+                    cache : true,
+                    type : "POST",
+                    url : ctx + "admin/client/save",
+                    data : $("#form-client-add").serialize(),
+                    async : false,
+                    error : function(request) {
+                        $.modal.alertError("系统错误");
+                    },
+                    success : function(data) {
+                        $.operate.successCallback(data);
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body class="white-bg">
+        <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+            <form class="form-horizontal m" id="form-client-add" th:object="${client}">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">客户端ID：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="clientId" id="clientId" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">客户端名称：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="clientName" id="clientName" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">客户端密码：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="password" name="clientPwd" id="clientPwd" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">资源访问集合：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="resourceIds" id="resourceIds" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">权限范围：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="scope" id="scope" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">授权类型：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="grantTypes" id="grantTypes" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">重定向URI：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="redirectUri" id="redirectUri" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">状态：</label>
+                    <div class="col-sm-8">
+                        <label class="toggle-switch switch-solid">
+                            <input type="checkbox" id="enable" name="enable" checked>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">令牌有效时间：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="accessTokenValidity" id="accessTokenValidity" th:field="*{accessTokenValidity}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">显示顺序：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="clientSort" id="clientSort" required>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <th:block th:include="include :: footer" />
+    </body>
+</html>

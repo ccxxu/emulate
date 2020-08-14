@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+    <head>
+        <th:block th:include="include :: header('新增用户组')" />
+        <script type="text/javascript">
+
+            function submitHandler() {
+                if ($.validate.form()) {
+                    edit();
+                }
+            }
+
+            function edit() {
+                $("input[id='state']").val($("input[id='state']").is(':checked') == true ? 1 : 0);
+                $.ajax({
+                    cache : true,
+                    type : "POST",
+                    url : ctx + "admin/group/save",
+                    data : $("#form-group-edit").serialize(),
+                    async : false,
+                    error : function(request) {
+                        $.modal.alertError("系统错误");
+                    },
+                    success : function(data) {
+                        $.operate.successCallback(data);
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body class="white-bg">
+        <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+            <form class="form-horizontal m" id="form-group-edit" th:object="${group}">
+                <input id="fdid" name="fdid" type="hidden" th:field="*{fdid}" />
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">用户组ID：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="id" id="id" th:field="*{id}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">用户组名称：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="name" id="name" th:field="*{name}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">状态：</label>
+                    <div class="col-sm-8">
+                        <label class="toggle-switch switch-solid">
+                            <input type="checkbox" id="state" name="state" th:checked="${group.state=='1'?true:false}">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">用户组描述：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="descc" id="descc" th:field="*{descc}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">显示顺序：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="groupSort" id="groupSort" th:field="*{groupSort}" required>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <th:block th:include="include :: footer" />
+    </body>
+</html>

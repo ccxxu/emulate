@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="nw-auth:war">
+    <output-path>$PROJECT_DIR$/nw-auth/target</output-path>
+    <root id="archive" name="nw-auth-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="nw-auth:war exploded" />
+    </root>
+  </artifact>
+</component>

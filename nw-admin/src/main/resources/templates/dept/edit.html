@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('编辑单位')" />
+    <script type="text/javascript">
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                add();
+            }
+        }
+
+        function add() {
+            $("input[id='state']").val($("input[id='state']").is(':checked')==true ? 1 : 0);
+            $.ajax({
+                cache : true,
+                type : "POST",
+                url : ctx + "admin/dept/save",
+                data : $("#form-dept-edit").serialize(),
+                async : false,
+                error : function(request) {
+                    $.modal.alertError("系统错误");
+                },
+                success : function(data) {
+                    $.operate.successCallback(data);
+                }
+            });
+        }
+    </script>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-dept-edit" th:object="${user}">
+        <input id="userId" name="userId" type="hidden" th:field="*{userId}" />
+        <div class="form-group">
+            <label class="col-sm-3 control-label">单位类型：</label>
+            <div class="col-sm-8">
+                <select name="orgType" class="form-control m-b">
+                    <option value="0" th:selected="*{orgType==0}">部机关</option>
+                    <option value="1" th:selected="*{orgType==1}">直属事业单位</option>
+                    <option value="2" th:selected="*{orgType==2}">商会</option>
+                    <option value="3" th:selected="*{orgType==3}">协会</option>
+                    <option value="4" th:selected="*{orgType==4}">学会</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">单位名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="objName" id="objName" th:field="*{objName}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">单位简称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="abbrName" id="abbrName" th:field="*{abbrName}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">单位别称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="aliasName" id="aliasName" th:field="*{aliasName}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">上级单位：</label>
+            <div class="col-sm-8">
+                <input class="form-control" readonly type="text" name="pid" id="pid" th:field="*{superId}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">状态：</label>
+            <div class="col-sm-8">
+                <label class="toggle-switch switch-solid">
+                    <input type="checkbox" id="state" name="state" th:checked="*{state==1 ? true : false}">
+                    <span></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">单位级别：</label>
+            <div class="col-sm-8">
+                <select name="levelId" class="form-control m-b">
+                    <option value="0" th:selected="*{levelId==0}">部级</option>
+                    <option value="1" th:selected="*{levelId==1}">司级</option>
+                    <option value="2" th:selected="*{levelId==2}">处级</option>
+                    <option value="3" th:selected="*{levelId==3}">科级</option>
+                    <option value="4" th:selected="*{levelId==4}">未定级</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">单位编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="deptNo" id="deptNo" th:field="*{deptNo}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">显示顺序：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="displayOrder" id="displayOrder" th:field="*{displayOrder}" required>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer" />
+</body>
+</html>

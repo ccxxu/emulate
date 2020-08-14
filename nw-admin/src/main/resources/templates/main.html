@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--360浏览器优先以webkit内核解析-->
+    <title>认证中心介绍</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="../static/css/main/animate.min.css" th:href="@{/css/main/animate.min.css}" rel="stylesheet"/>
+    <link href="../static/css/main/style.min862f.css" th:href="@{/css/main/style.min862f.css}" rel="stylesheet"/>
+</head>
+
+<body class="gray-bg">
+    <div class="row  border-bottom white-bg dashboard-header">
+        <div class="col-sm-12">
+            <blockquote class="text-warning" style="font-size:14px">
+				Spring cloud微服务实战：基于OAUTH2.0统一认证授权的微服务基础架构
+                <br><a target="_blank" href="https://blog.csdn.net/w1054993544/article/details/78932614">https://blog.csdn.net/w1054993544/article/details/78932614</a><br>
+				OAuth2认证原理
+                <br><a target="_blank" href="https://blog.csdn.net/fsy9595887/article/details/85114508">https://blog.csdn.net/fsy9595887/article/details/85114508</a><br>
+				OAuth2.0 原理流程及其单点登录和权限控制
+                <br><a target="_blank" href="https://blog.csdn.net/kefengwang/article/details/81213025">https://blog.csdn.net/kefengwang/article/details/81213025</a><br>
+				Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
+                <br><a target="_blank" href="https://www.thymeleaf.org">https://www.thymeleaf.org</a>
+                <h4 class="text-danger">乱七八糟</h4>
+            </blockquote>
+
+            <hr>
+        </div>
+        <div class="col-sm-3">
+            <h2>学习Spring Cloud & Oauth2</h2>
+            <small>学习是一个爬坑的过程</small>
+            <br>
+            <br>
+        </div>
+        <div class="col-sm-5">
+            <h2>认证中心后台管理框架</h2>
+            <p>OAuth（开放授权）是一个开放标准，允许用户授权第三方移动应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方移动应用或分享他们数据的所有内容，OAuth2.0是OAuth协议的延续版本，但不向后兼容OAuth 1.0即完全废止了OAuth1.0。</p>
+            <p>
+                <b>当前版本：</b><span>v[[${version}]]</span>
+            </p>
+            <p>
+                <span class="label label-warning">&yen;免费开源</span>
+            </p>
+            <br>
+            <p>
+                <a class="btn btn-success btn-outline" href="#" target="_blank">
+                    <i class="fa fa-cloud"> </i> 访问码云
+                </a>
+                <a class="btn btn-white btn-bitbucket" href="#" target="_blank">
+                    <i class="fa fa-home"></i> 访问主页
+                </a>
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <h4>技术选型：</h4>
+            <ol>
+				<li>框架平台：Spring Cloud。</li>
+                <li>核心框架：Spring Boot。</li>
+                <li>安全框架：Spring Security。</li>
+                <li>模板引擎：Thymeleaf。</li>
+                <li>持久层框架：Hibernate。</li>
+				<li>定时任务:Quartz。</li>
+                <li>数据库连接池：Druid。</li>
+                <li>工具类：Fastjson。</li>
+                <li>更多……</li>
+            </ol>
+        </div>
+
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-4">
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>项目架构</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <p><i class="fa fa-send-o"></i> 基础模块：<a href="#" target="_blank">nw-common</a>
+                        </p>
+                        <p><i class="fa fa-send-o"></i> 系统管理模块：<s>nw-dev</s>  <a href="#" target="_blank">nw-admin</a>
+                        </p>
+                        <p><i class="fa fa-send-o"></i> 注册中心模块：<a href="#">nw-server</a>
+                        </p>
+                        <p><i class="fa fa-send-o"></i> 授权登录模块：<a href="#">nw-oauth2</a>
+                        </p>
+						<p><i class="fa fa-send-o"></i> 网关路由信息：<a href="#">nw-gateway</a>
+						</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>更新日志</h5>
+                    </div>
+                    <div class="ibox-content no-padding">
+                        <div class="panel-body">
+                            <div class="panel-group" id="version">
+                            <div class="panel panel-default">
+								<div class="panel-heading">
+								   <h5 class="panel-title">
+									   <a data-toggle="collapse" data-parent="#version" href="#v41">v4.1.0</a><code class="pull-right">2019.10.22</code>
+								   </h5>
+								</div>
+								<div id="v41" class="panel-collapse collapse in">
+									<div class="panel-body">
+									   <ol>
+									        <li>支持多表格实例操作</li>
+									        <li>浮动提示方法tooltip支持弹窗</li>
+											<li>代码生成&字典数据支持模糊条件查询</li>
+											<li>增加页签全屏方法</li>
+											<li>增加清除表单验证错误信息方法</li>
+											<li>支持iframe局部刷新页面</li>
+											<li>支持在线切换主题</li>
+											<li>修改图片预览设置的高宽参数颠倒问题</li>
+											<li>操作日志新增解锁账户功能</li>
+											<li>管理员用户&角色不允许操作</li>
+											<li>去掉jsoup包调用自定义转义工具</li>
+											<li>添加时间轴示例</li>
+											<li>修复翻页记住选择时获取指定列值的问题</li>
+											<li>代码生成sql脚本添加导出按钮</li>
+											<li>添加表格父子视图示例</li>
+											<li>添加表格行内编辑示例</li>
+											<li>升级fastjson到最新版1.2.60 阻止漏洞攻击</li>
+											<li>升级echarts到最新版4.2.1</li>
+											<li>操作日志新增返回参数</li>
+											<li>权限验证多种情况处理</li>
+											<li>修复树形类型的代码生成的部分必要属性无法显示</li>
+											<li>修复非表格插件情况下重置出现异常</li>
+											<li>修复富文本编辑器有序列表冲突</li>
+											<li>代码生成表前缀配置支持多个</li>
+											<li>修复自动去除表前缀配置无效问题</li>
+											<li>菜单列表按钮数据可见不显示（权限标识控制）</li>
+											<li>修复设置会话超时时间无效问题</li>
+											<li>新增本地资源通用下载方法</li>
+											<li>操作日志记录新增请求方式</li>
+											<li>代码生成单选按钮属性重名修复</li>
+											<li>优化select2下拉框宽度不会随浏览器改变</li>
+											<li>修复代码生成树表异常</li>
+											<li>其他细节优化</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+                            <div class="panel panel-default">
+								<div class="panel-heading">
+								   <h5 class="panel-title">
+									   <a data-toggle="collapse" data-parent="#version" href="#v40">v4.0.0</a><code class="pull-right">2019.08.08</code>
+								   </h5>
+								</div>
+								<div id="v40" class="panel-collapse collapse">
+									<div class="panel-body">
+									   <ol>
+									        <li>代码生成支持预览、编辑，保存方案</li>
+									        <li>新增防止表单重复提交注解</li>
+											<li>新增后端校验（和前端保持一致）</li>
+											<li>新增同一个用户最大会话数控制</li>
+											<li>Excel导出子对象支持多个字段</li>
+											<li>定时任务支持静态调用和多参数</li>
+											<li>定时任务增加分组条件查询</li>
+											<li>字典类型增加任务分组数据</li>
+											<li>新增表格是否首次加载数据</li>
+											<li>新增parentTab选项卡可在同一页签打开</li>
+											<li>多数据源支持类注解（允许继承父类的注解）</li>
+											<li>部门及以下数据权限（调整为以下及所有子节点）</li>
+											<li>新增角色数据权限配（仅本人数据权限）</li>
+											<li>修改菜单权限显示问题</li>
+											<li>上传文件修改路径及返回名称</li>
+											<li>添加报表插件及示例</li>
+											<li>添加首页统计模板</li>
+											<li>添加表格拖拽示例</li>
+											<li>添加卡片列表示例</li>
+											<li>添加富文本编辑器示例</li>
+											<li>添加表格动态增删改查示例</li>
+											<li>添加用户页面岗位选择框提示</li>
+											<li>点击菜单操作添加背景高亮显示</li>
+											<li>表格树新增showSearch是否显示检索信息</li>
+											<li>解决表格列设置sortName无效问题</li>
+											<li>表格图片预览支持自定义设置宽高</li>
+											<li>添加表格列浮动提示（单击文本复制）</li>
+											<li>PC端收起菜单后支持浮动显示</li>
+											<li>详细操作样式调整</li>
+											<li>修改用户更新描述空串不更新问题</li>
+											<li>导入修改为模板渲染</li>
+											<li>修改菜单及部门排序规则</li>
+											<li>角色导出数据范围表达式翻译</li>
+											<li>添加summernote富文本字体大小</li>
+											<li>优化表格底部下边框防重叠&汇总像素问题</li>
+											<li>树表格支持属性多层级访问</li>
+											<li>修复IE浏览器用户管理界面右侧留白问题</li>
+											<li>重置按钮刷新表格</li>
+											<li>重置密码更新用户缓存</li>
+											<li>优化验证码属性参数</li>
+											<li>支持数据监控配置用户名和密码</li>
+											<li>文件上传修改按钮背景及加载动画</li>
+											<li>支持配置一级菜单href跳转</li>
+											<li>侧边栏添加一套浅色主题</li>
+											<li>树表格添加回调函数（校验异常状态）</li>
+											<li>用户个人中心适配手机端显示</li>
+											<li>Excel支持设置导出类型&更换样式</li>
+											<li>检查属性改变修改为克隆方式（防止热部署强转异常）</li>
+											<li>其他细节优化</li>
+										</ol>
+									</div>
+								</div>
+							</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>数据库表</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="alert alert-warning">
+							OAUTH_CLIENT_DETAILS
+                        </div>
+						<div class="alert alert-warning">
+							OAUTH_CLIENT_DETAILS
+						</div>
+						<div class="alert alert-warning">
+							OAUTH_CLIENT_DETAILS
+						</div>
+						<div class="alert alert-warning">
+							OAUTH_CLIENT_DETAILS
+						</div>
+						<div class="alert alert-warning">
+							OAUTH_CLIENT_DETAILS
+						</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/ajax/libs/layer/layer.min.js}"></script>
+    <script type="text/javascript">
+	    $('#pay-qrcode').click(function(){
+	        var html=$(this).html();
+	        parent.layer.open({
+	            title: false,
+	            type: 1,
+	            closeBtn:false,
+	            shadeClose:true,
+	            area: ['600px', 'auto'],
+	            content: html
+	        });
+	    });
+    </script>
+</body>
+</html>

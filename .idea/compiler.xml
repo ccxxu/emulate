@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="nw" />
+        <module name="nw-admin" />
+        <module name="nw-auth" />
+        <module name="nw-common" />
+        <module name="nw-dev" />
+        <module name="nw-gateway" />
+        <module name="nw-generator" />
+        <module name="nw-oauth2" />
+        <module name="nw-server" />
+        <module name="nw-test" />
+        <module name="nw-user" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="nw-admin" target="1.8" />
+      <module name="nw-auth" target="1.8" />
+      <module name="nw-common" target="1.8" />
+      <module name="nw-dev" target="1.8" />
+      <module name="nw-gateway" target="1.8" />
+      <module name="nw-generator" target="1.8" />
+      <module name="nw-oauth2" target="1.8" />
+      <module name="nw-parent" target="1.8" />
+      <module name="nw-server" target="1.8" />
+      <module name="nw-test" target="1.8" />
+      <module name="nw-user" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

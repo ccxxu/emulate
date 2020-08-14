@@ -1,0 +1,40 @@
+debug: true
+spring:
+  devtools:
+    restart:
+      enabled: true
+  application:
+    name: nw-admin
+  freemarker:
+    cache: false
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    cache: false
+#spring.devtools.restart.exclude: WEB-INF/**
+
+
+server:
+  port: 8092
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8091/eureka/
+
+security:
+  oauth2:
+    resource:
+      id: nw-user
+      user-info-uri: http://localhost:8903/auth/api/member
+      prefer-token-info: false

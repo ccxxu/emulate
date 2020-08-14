@@ -1,0 +1,26 @@
+spring:
+  datasource:
+#    url: jdbc:mysql://localhost:3306/permission?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT
+#    username: root
+#    password: 1234
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: ca
+    password: ciecc2020
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database: oracle
+    show-sql: true
+    properties:
+      dialect: org.hibernate.dialect.Oracle10gDialect
+  main:
+    allow-bean-definition-overriding: true
+# session:
+#   store-type: redis
+#  redis:
+#    host: 127.0.0.1
+#    password: 123456
+#    port: 6379

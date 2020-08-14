@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>会员列表</title>
+
+    <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+
+</head>
+<body>
+<h3>当前登录用户：<span th:text="${#authentication.name}"></span> | <a th:href="@{/logout}">退出</a></h3>
+<h2>这是大神管理列表页面</h2>
+<table class="table">
+    <tr>
+        <th>名称</th>
+        <th>职业</th>
+        <th>简介</th>
+        <th>创建时间</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <td style="font-size: 20px;">拉格朗日</td>
+        <td>法国科学院院长</td>
+        <td>数学家、物理学家</td>
+        <td>2019-03-01</td>
+        <td><a th:href="@{/member/detail}">详情</a> </td>
+    </tr>
+    <tr>
+        <td style="font-size: 20px;">傅立叶</td>
+        <td>数学家、物理学家</td>
+        <td>热的解析理论作者，傅立叶变换的开创者</td>
+        <td>2019-03-02</td>
+        <td><a th:href="@{/member/detail}">详情</a> </td>
+    </tr>
+    <tr>
+        <td style="font-size: 20px;">莱布尼茨</td>
+        <td>数学家</td>
+        <td>创造了微积分理论</td>
+        <td>2019-03-03</td>
+        <td><a th:href="@{/member/detail}">详情</a> </td>
+    </tr>
+</table>
+</body>
+</html>

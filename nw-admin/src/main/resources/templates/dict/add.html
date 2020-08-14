@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增字典')" />
+    <script type="text/javascript">
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                add();
+            }
+        }
+
+        function add() {
+            $("input[id='enable']").val($("input[id='enable']").is(':checked') == true ? 1 : 0);
+            $("input[id='state']").val($("input[id='state']").is(':checked') == true ? 'open' : 'closed');
+            $.ajax({
+                cache : true,
+                type : "POST",
+                url : ctx + "admin/dict/save",
+                data : $("#form-dict-add").serialize(),
+                async : false,
+                error : function(request) {
+                    $.modal.alertError("系统错误");
+                },
+                success : function(data) {
+                    $.operate.successCallback(data);
+                }
+            });
+        }
+    </script>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-dict-add" th:object="${dict}">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">字典编号：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="id" id="id" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">字典主键：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="code" id="code" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">字典名称：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="name" id="name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">上级字典：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" readonly name="pid" id="pid" th:field="*{pid}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">字典状态：</label>
+            <div class="col-sm-8">
+                <label class="toggle-switch switch-solid">
+                    <input type="checkbox" id="enable" name="enable" checked>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">叶子节点：</label>
+            <div class="col-sm-8">
+                <label class="toggle-switch switch-solid">
+                    <input type="checkbox" id="state" name="state" checked>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">字典备注：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="fullname" id="fullname" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">显示顺序：</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="displayOrder" id="displayOrder" required>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer" />
+</body>
+</html>
