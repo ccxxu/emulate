@@ -15,6 +15,7 @@
         <module>nw-auth</module>
         <module>nw-oauth2</module>
         <module>nw-gateway</module>
+        <module>nw-generator</module>
         <module>nw-test</module>
     </modules>
     <packaging>pom</packaging>
@@ -34,7 +35,8 @@
         <spring.cloud.version>Finchley.RC2</spring.cloud.version>
         <fastjson.version>1.2.47</fastjson.version>
         <commons-lang.version>2.6</commons-lang.version>
-        <oracle.version>11.2.0.5</oracle.version>
+        <oracle.version>11.2.0.3</oracle.version>
+        <mysql.version>5.1.47</mysql.version>
         <druid.version>1.1.10</druid.version>
         <lombok.version>1.16.20</lombok.version>
         <spring.security.version>4.1.0.RELEASE</spring.security.version>
@@ -67,6 +69,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-freemarker</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle</groupId>
