@@ -7,6 +7,8 @@
     <groupId>com.ce.nw</groupId>
     <artifactId>nw-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <!-- 配置聚合 -->
     <modules>
         <module>nw-common</module>
         <module>nw-server</module>
