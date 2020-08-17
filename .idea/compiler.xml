@@ -31,6 +31,7 @@
       <module name="nw-server" target="1.8" />
       <module name="nw-test" target="1.8" />
       <module name="nw-user" target="1.8" />
+      <module name="renren-generator" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

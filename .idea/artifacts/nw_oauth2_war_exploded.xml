@@ -86,8 +86,7 @@
           <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:6.0.14.Final" />
           <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.1.Final" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: com.oracle:ojdbc6:11.2.0.5" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.15" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.47" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.1.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.1.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.1.4.RELEASE" />

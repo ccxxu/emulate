@@ -50,11 +50,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>${oracle.version}</version>
-		</dependency>
 		<!--
         <dependency>
             <groupId>org.springframework.session</groupId>
@@ -64,7 +59,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+			<version>${mysql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
