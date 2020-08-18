@@ -3,23 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/nw-admin/nw-admin.iml" filepath="$PROJECT_DIR$/nw-admin/nw-admin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nw-admin/nw-admin.iml" filepath="$PROJECT_DIR$/nw-admin/nw-admin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nw-auth/nw-auth.iml" filepath="$PROJECT_DIR$/nw-auth/nw-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-auth/nw-auth.iml" filepath="$PROJECT_DIR$/nw-auth/nw-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-common/nw-common.iml" filepath="$PROJECT_DIR$/nw-common/nw-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nw-common/nw-common.iml" filepath="$PROJECT_DIR$/nw-common/nw-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nw-dev/nw-dev.iml" filepath="$PROJECT_DIR$/nw-dev/nw-dev.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-dev/nw-dev.iml" filepath="$PROJECT_DIR$/nw-dev/nw-dev.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-gateway/nw-gateway.iml" filepath="$PROJECT_DIR$/nw-gateway/nw-gateway.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nw-gateway/nw-gateway.iml" filepath="$PROJECT_DIR$/nw-gateway/nw-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-generator/nw-generator.iml" filepath="$PROJECT_DIR$/nw-generator/nw-generator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nw-generator/nw-generator.iml" filepath="$PROJECT_DIR$/nw-generator/nw-generator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nw-oauth2/nw-oauth2.iml" filepath="$PROJECT_DIR$/nw-oauth2/nw-oauth2.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-oauth2/nw-oauth2.iml" filepath="$PROJECT_DIR$/nw-oauth2/nw-oauth2.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-parent.iml" filepath="$PROJECT_DIR$/nw-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-server/nw-server.iml" filepath="$PROJECT_DIR$/nw-server/nw-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nw-server/nw-server.iml" filepath="$PROJECT_DIR$/nw-server/nw-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nw-test/nw-test.iml" filepath="$PROJECT_DIR$/nw-test/nw-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-test/nw-test.iml" filepath="$PROJECT_DIR$/nw-test/nw-test.iml" />
     </modules>
   </component>
