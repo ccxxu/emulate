@@ -73,18 +73,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // 允许表单登录
 //        security.allowFormAuthenticationForClients();
 //        // 加载client的service
-//        filter.setClientDetailsService(clientDetailsService);
-//        // 自定义异常处理端口
+        filter.setClientDetailsService(clientDetailsService);
+        // 自定义异常处理端口
 //        security.authenticationEntryPoint(authenticationEntryPoint);
-//        // 客户端认证之前的过滤器
-//        security.addTokenEndpointAuthenticationFilter(filter);
+        // 客户端认证之前的过滤器
+        security.addTokenEndpointAuthenticationFilter(filter);
         //开启 /oauth/check_token
 //        security.tokenKeyAccess("isAuthenticated()");
         security
                 // 开启 /oauth/check_token
                 .tokenKeyAccess("permitAll()")
                 // 开启 /oauth/token_key
-                .checkTokenAccess("isAuthenticated()");
+                .checkTokenAccess("isAuthenticated()")
+                .allowFormAuthenticationForClients();
 
     }
 

@@ -1,5 +1,7 @@
 spring:
+  application:
+    name: nw-test-service
   profiles:
-    active: prod
+    active: test
 
 

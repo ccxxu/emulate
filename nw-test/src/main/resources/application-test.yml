@@ -1,17 +1,28 @@
-debug: true
-
+server:
+  port: 8082
+  servlet:
+    context-path: /test
 security:
   oauth2:
-    sso:
-      login-path: /login
     client:
-      client-id: test-client-id
-      client-secret: test-client-id-secret-123
-      access-token-uri: http://localhost:8082/security/oauth/token
-      user-authorization-uri: http://localhost:8082/security/oauth/authorize
-#      client-authentication-scheme: form
-#      grant-type: authorization_code
+      client-id: UserManagement
+      client-secret: user123
+      access-token-uri: http://localhost:8094/ca/oauth/token
+      user-authorization-uri: http://localhost:8094/ca/oauth/authorize
     resource:
-#      user-info-uri: http://localhost:8082/security/oauth/check_token
-      token-info-uri: http://localhost:8082/security/oauth/check_token
-      prefer-token-info: true
+      jwt:
+        key-uri: http://localhost:8094/ca/oauth/token_key
+        key-value: ciecc2020
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+
+#--------------------eureka---------------------
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:8091/eureka/

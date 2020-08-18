@@ -21,4 +21,5 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         filterChain.doFilter(httpServletRequest,httpServletResponse);
     }
+
 }

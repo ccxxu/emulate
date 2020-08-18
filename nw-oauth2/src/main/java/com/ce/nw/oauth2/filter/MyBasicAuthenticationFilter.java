@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -37,6 +38,9 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
+        System.out.println("MyBasicAuthenticationFilter=="+request.getRequestURI());
+        System.out.println("MyBasicAuthenticationFilter=="+request.getParameter("grant_type"));
+
         if (!request.getRequestURI().equals("/oauth/token") ||
                 !request.getParameter("grant_type").equals("password")) {
             filterChain.doFilter(request, response);
@@ -58,14 +62,15 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
 
     private void handle(HttpServletRequest request, HttpServletResponse response, String[] clientDetails,FilterChain filterChain) throws IOException, ServletException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         if (authentication != null && authentication.isAuthenticated()) {
             filterChain.doFilter(request,response);
             return;
         }
 
-
         ClientDetailsModel details = (ClientDetailsModel) this.clientDetailsService.loadClientByClientId(clientDetails[0]);
+
+//        OAuth2Authentication
+
         UsernamePasswordAuthenticationToken token =
                 new UsernamePasswordAuthenticationToken(details.getClientId(), details.getClientSecret(), details.getAuthorities());
 

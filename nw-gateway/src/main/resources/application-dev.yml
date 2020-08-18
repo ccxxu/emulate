@@ -17,40 +17,26 @@ eureka:
 #--------------------Zuul-----------------------
 zuul:
   routes:
-    member:
+    nw-oauth2-service:
+      stripPrefix: false
       path: /ca/**
-      serviceId: nw-user
-      sensitiveHeaders: "*"
-    auth:
-      path: /auth/**
-      serviceId: nw-auth
-      sensitiveHeaders: "*"
+#    nw-test-service:
+#      stripPrefix: false
+#      path: /test/**
   retryable: false
   ignored-services: "*"
   ribbon:
     eager-load:
       enabled: true
   host:
-    connect-timeout-millis: 3000
-    socket-timeout-millis: 3000
+    connect-timeout-millis: 15000
+    socket-timeout-millis: 60000
   add-proxy-headers: true
-
-
-#---------------------OAuth2---------------------
-security:
-  oauth2:
-    client:
-      access-token-uri: http://localhost:${server.port}/auth/oauth/token
-      user-authorization-uri: http://localhost:${server.port}/auth/oauth/authorize
-      client-id: web
-    resource:
-      user-info-uri:  http://localhost:${server.port}/auth/api/member
-      prefer-token-info: false
 
 #----------------------超时配置-------------------
 ribbon:
-  ReadTimeout: 3000
-  ConnectTimeout: 3000
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
   MaxAutoRetries: 1
   MaxAutoRetriesNextServer: 2
   eureka:

@@ -3,7 +3,7 @@ debug: true
 server:
   port: 8096
   servlet:
-    context-path: /memberSystem
+    context-path: /test
 
 security:
     client:
