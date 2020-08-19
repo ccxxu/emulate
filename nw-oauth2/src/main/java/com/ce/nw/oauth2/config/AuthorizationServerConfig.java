@@ -56,8 +56,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private MyBasicAuthenticationFilter filter;
+//    @Autowired
+//    private MyBasicAuthenticationFilter filter;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -73,11 +73,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // 允许表单登录
 //        security.allowFormAuthenticationForClients();
 //        // 加载client的service
-        filter.setClientDetailsService(clientDetailsService);
+//        filter.setClientDetailsService(clientDetailsService);
         // 自定义异常处理端口
 //        security.authenticationEntryPoint(authenticationEntryPoint);
         // 客户端认证之前的过滤器
-        security.addTokenEndpointAuthenticationFilter(filter);
+//        security.addTokenEndpointAuthenticationFilter(filter);
         //开启 /oauth/check_token
 //        security.tokenKeyAccess("isAuthenticated()");
         security
@@ -117,6 +117,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         TokenEnhancerChain chain = new TokenEnhancerChain();
         chain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter));
+//        chain.setTokenEnhancers(Arrays.asList(accessTokenConverter));
         endpoints.accessTokenConverter(accessTokenConverter);
 //        this.tokenStore = new JdbcTokenStore(dataSource);
 //        endpoints.tokenStore(jwtTokenStore()).authenticationManager(authenticationManager);
@@ -135,10 +136,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 //                .allowedTokenEndpointRequestMethods(HttpMethod.POST,HttpMethod.GET);
 
         endpoints
-                .tokenStore(new JdbcTokenStore(dataSource))
-                .tokenEnhancer(chain)
                 .authenticationManager(authenticationManager)//认证管理器
                 .authorizationCodeServices(authorizationCodeServices)//授权码服务
+                .tokenStore(new JdbcTokenStore(dataSource))
+                .tokenEnhancer(chain)
                 .allowedTokenEndpointRequestMethods(HttpMethod.POST,HttpMethod.GET);
     }
 

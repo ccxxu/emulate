@@ -12,8 +12,8 @@ import java.util.Map;
 
 /**
  * @author ccx
- * @description
- * @date
+ * @description 生成令牌
+ * @date 2020-08-19
  */
 public class CustomTokenEnhancer implements TokenEnhancer {
 
@@ -23,10 +23,8 @@ public class CustomTokenEnhancer implements TokenEnhancer {
         Map<String, Object> additionInfo = new HashMap<>();
         additionInfo.put("principal", authentication.getPrincipal());
         ((DefaultOAuth2AccessToken) token).setAdditionalInformation(additionInfo);
-
         JSONObject jsonObject = (JSONObject) JSONObject.toJSON(token);
-        System.out.println("生成的令牌是:"+jsonObject.toString());
-
+        System.out.println("Enhancer生成的令牌是:"+jsonObject.toString());
         return token;
     }
 
