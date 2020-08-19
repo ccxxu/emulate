@@ -1,7 +1,9 @@
 package com.ce.nw.oauth2.config;
 
+import com.ce.nw.oauth2.handler.CustomAuthenticationSuccessHandler;
 import com.ce.nw.oauth2.handler.CustomLogoutSuccessHandler;
 import com.ce.nw.oauth2.service.MyUserDetailsService;
+import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,11 @@
 package com.ce.nw.oauth2.filter;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.ce.nw.common.util.EncryptUtil;
 import com.ce.nw.oauth2.domain.BaseResponse;
 import com.ce.nw.oauth2.domain.HttpResponse;
-import com.ce.nw.oauth2.domain.ClientDetailsModel;
+import com.ce.nw.oauth2.utils.HeaderMapRequestWrapper;
 import com.ce.nw.oauth2.utils.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -10,8 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.*;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -20,13 +24,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Base64;
+import java.util.*;
 
 /**
- * @author yuit
- * @date 2018/11/5 11:38
- * 认证不带客户端信息参数处理 filter
- *
+ * @author 燕园夜雨
+ * @date 2020-08-19 09：24
+ * @desc 认证授权码携带的令牌 *
  */
 @Component
 public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
@@ -34,30 +37,49 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private ClientDetailsService clientDetailsService;
 
+    @Autowired
+    private AuthorizationServerTokenServices authorizationServerTokenServices;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("MyBasicAuthenticationFilter=="+request.getRequestURI()+",grant_type="+request.getParameter("grant_type")+", username="+authentication);
 
-        System.out.println("MyBasicAuthenticationFilter=="+request.getRequestURI());
-        System.out.println("MyBasicAuthenticationFilter=="+request.getParameter("grant_type"));
+        if (request.getRequestURI().equals("/oauth/authorize")) {
+            if (authentication instanceof UsernamePasswordAuthenticationToken) {
+                UsernamePasswordAuthenticationToken upat = (UsernamePasswordAuthenticationToken) authentication;
+                //取出用户权限
+                List<String> authorities = new ArrayList<>();
+                upat.getAuthorities().stream().forEach(a->authorities.add(a.getAuthority()));
+                String principal =  upat.getName();
+                HeaderMapRequestWrapper requestWrapper = new HeaderMapRequestWrapper(request);
+                Map<String, Object> jsonToken = new HashMap<>();
+                jsonToken.put("principal", principal);
+                jsonToken.put("authorities",authorities);
+                requestWrapper.addHeader("json-token", EncryptUtil.encodeUTF8StringBase64(JSON.toJSONString(jsonToken)));
+
+                response.addHeader("json-token", EncryptUtil.encodeUTF8StringBase64(JSON.toJSONString(jsonToken)));
+                filterChain.doFilter(requestWrapper, response);
+            } else {
+                filterChain.doFilter(request, response);
+            }
+            return;
+        }
 
         if (!request.getRequestURI().equals("/oauth/token") ||
-                !request.getParameter("grant_type").equals("password")) {
+                !request.getParameter("grant_type").equals("authorization_code")) {
             filterChain.doFilter(request, response);
             return;
         }
 
+        System.out.println("开始授权码认证.....");
         String[] clientDetails = this.isHasClientDetails(request);
-
         if (clientDetails == null) {
             BaseResponse bs = HttpResponse.baseResponse(HttpStatus.UNAUTHORIZED.value(), "请求中未包含客户端信息");
             HttpUtils.writerError(bs, response);
             return;
         }
-
-       this.handle(request,response,clientDetails,filterChain);
-
-
+        this.handle(request,response,clientDetails,filterChain);
     }
 
     private void handle(HttpServletRequest request, HttpServletResponse response, String[] clientDetails,FilterChain filterChain) throws IOException, ServletException {
@@ -66,17 +88,32 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request,response);
             return;
         }
-
-        ClientDetailsModel details = (ClientDetailsModel) this.clientDetailsService.loadClientByClientId(clientDetails[0]);
+        ClientDetails details = this.clientDetailsService.loadClientByClientId(clientDetails[0]);
 
 //        OAuth2Authentication
 
-        UsernamePasswordAuthenticationToken token =
-                new UsernamePasswordAuthenticationToken(details.getClientId(), details.getClientSecret(), details.getAuthorities());
+//        UsernamePasswordAuthenticationToken token =
+//                new UsernamePasswordAuthenticationToken(details.getClientId(), details.getClientSecret(), details.getAuthorities());
+//             SecurityContextHolder.getContext().setAuthentication(token);
+//
+//        if (details == null){
+//            throw new UnapprovedClientAuthenticationException("clientId 不存在"+clientId);
+//            //判断  方言  是否一致
+//        }else if (!StringUtils.equals(clientDetails.getClientSecret(),clientSecret)){
+//            throw new UnapprovedClientAuthenticationException("clientSecret 不匹配"+clientId);
+//        }
+        //密码授权 模式, 组建 authentication
+        Map<String, String> rp = new HashMap<>();
+        TokenRequest tokenRequest = new TokenRequest(rp, details.getClientId(), details.getScope(), "authorization_code");
 
-        SecurityContextHolder.getContext().setAuthentication(token);
-
-
+        OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(details);
+        OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request,authentication);
+        SecurityContextHolder.getContext().setAuthentication(oAuth2Authentication);
+        OAuth2AccessToken token = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
+        JSONObject jsonObject = (JSONObject) JSONObject.toJSON(token);
+        System.out.println("BasicFilter生成的令牌是:"+jsonObject.toString());
+        token.getValue();
+//        String json = EncryptUtil.decodeUTF8StringBase64(token);
         filterChain.doFilter(request,response);
     }
 
@@ -84,28 +121,21 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
      * 判断请求头中是否包含client信息，不包含返回null
      */
     private String[] isHasClientDetails(HttpServletRequest request) {
-
         String[] params = null;
-
+        //sd
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-
         if (header != null) {
-
             String basic = header.substring(0, 5);
-
             if (basic.toLowerCase().contains("basic")) {
-
                 String tmp = header.substring(6);
+                System.out.println(tmp);
                 String defaultClientDetails = new String(Base64.getDecoder().decode(tmp));
-
                 String[] clientArrays = defaultClientDetails.split(":");
-
                 if (clientArrays.length != 2) {
                     return params;
                 } else {
                     params = clientArrays;
                 }
-
             }
         }
 
@@ -120,11 +150,8 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
         return params;
     }
 
-    public ClientDetailsService getClientDetailsService() {
-        return clientDetailsService;
-    }
-
     public void setClientDetailsService(ClientDetailsService clientDetailsService) {
         this.clientDetailsService = clientDetailsService;
     }
+
 }
