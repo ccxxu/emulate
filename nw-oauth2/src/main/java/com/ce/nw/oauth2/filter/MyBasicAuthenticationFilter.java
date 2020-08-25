@@ -1,16 +1,12 @@
 package com.ce.nw.oauth2.filter;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ce.nw.common.util.EncryptUtil;
 import com.ce.nw.oauth2.domain.BaseResponse;
 import com.ce.nw.oauth2.domain.HttpResponse;
-import com.ce.nw.oauth2.utils.HeaderMapRequestWrapper;
 import com.ce.nw.oauth2.utils.HttpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -24,7 +20,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author 燕园夜雨
@@ -44,27 +42,6 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println("MyBasicAuthenticationFilter=="+request.getRequestURI()+",grant_type="+request.getParameter("grant_type")+", username="+authentication);
-
-        if (request.getRequestURI().equals("/oauth/authorize")) {
-            if (authentication instanceof UsernamePasswordAuthenticationToken) {
-                UsernamePasswordAuthenticationToken upat = (UsernamePasswordAuthenticationToken) authentication;
-                //取出用户权限
-                List<String> authorities = new ArrayList<>();
-                upat.getAuthorities().stream().forEach(a->authorities.add(a.getAuthority()));
-                String principal =  upat.getName();
-                HeaderMapRequestWrapper requestWrapper = new HeaderMapRequestWrapper(request);
-                Map<String, Object> jsonToken = new HashMap<>();
-                jsonToken.put("principal", principal);
-                jsonToken.put("authorities",authorities);
-                requestWrapper.addHeader("json-token", EncryptUtil.encodeUTF8StringBase64(JSON.toJSONString(jsonToken)));
-
-                response.addHeader("json-token", EncryptUtil.encodeUTF8StringBase64(JSON.toJSONString(jsonToken)));
-                filterChain.doFilter(requestWrapper, response);
-            } else {
-                filterChain.doFilter(request, response);
-            }
-            return;
-        }
 
         if (!request.getRequestURI().equals("/oauth/token") ||
                 !request.getParameter("grant_type").equals("authorization_code")) {
@@ -89,8 +66,6 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
         ClientDetails details = this.clientDetailsService.loadClientByClientId(clientDetails[0]);
-
-//        OAuth2Authentication
 
 //        UsernamePasswordAuthenticationToken token =
 //                new UsernamePasswordAuthenticationToken(details.getClientId(), details.getClientSecret(), details.getAuthorities());

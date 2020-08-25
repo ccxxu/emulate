@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/nw-dev/nw-dev.iml" filepath="$PROJECT_DIR$/nw-dev/nw-dev.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-gateway/nw-gateway.iml" filepath="$PROJECT_DIR$/nw-gateway/nw-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-generator/nw-generator.iml" filepath="$PROJECT_DIR$/nw-generator/nw-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nw-log/nw-log.iml" filepath="$PROJECT_DIR$/nw-log/nw-log.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-oauth2/nw-oauth2.iml" filepath="$PROJECT_DIR$/nw-oauth2/nw-oauth2.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-parent.iml" filepath="$PROJECT_DIR$/nw-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/nw-server/nw-server.iml" filepath="$PROJECT_DIR$/nw-server/nw-server.iml" />

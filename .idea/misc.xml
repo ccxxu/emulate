@@ -21,6 +21,7 @@
         <option value="$PROJECT_DIR$/nw-admin/pom.xml" />
         <option value="$PROJECT_DIR$/nw-dev/pom.xml" />
         <option value="$PROJECT_DIR$/nw-generator/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-log/pom.xml" />
       </list>
     </option>
   </component>

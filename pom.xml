@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.ce.nw</groupId>
     <artifactId>nw-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -19,6 +18,7 @@
         <module>nw-gateway</module>
         <module>nw-generator</module>
         <module>nw-test</module>
+        <module>nw-log</module>
     </modules>
     <packaging>pom</packaging>
     <description>nw统一认证服务</description>
@@ -36,13 +36,19 @@
         <java.version>1.8</java.version>
         <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
         <fastjson.version>1.2.47</fastjson.version>
+        <swagger.version>2.9.2</swagger.version>
         <commons-lang.version>2.6</commons-lang.version>
         <oracle.version>11.2.0.3</oracle.version>
         <mysql.version>5.1.47</mysql.version>
+        <oauth2.version>2.1.2.RELEASE</oauth2.version>
+        <jpa.version>2.1.8.RELEASE</jpa.version>
         <druid.version>1.1.10</druid.version>
         <lombok.version>1.16.20</lombok.version>
         <spring.security.version>4.1.0.RELEASE</spring.security.version>
         <log4j.version>1.2.16</log4j.version>
+        <autoc.version>2.1.3.RELEASE</autoc.version>
+        <redis.version>2.1.3.RELEASE</redis.version>
+        <hutool.version>5.3.4</hutool.version>
     </properties>
 
     <dependencyManagement>
@@ -65,12 +71,24 @@
                 <version>${commons-lang.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-oauth2</artifactId>
+                <version>${oauth2.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-freemarker</artifactId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${jpa.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>${autoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${redis.version}</version>
             </dependency>
             <dependency>
                 <groupId>mysql</groupId>
@@ -86,6 +104,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+            <!--工具包-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -104,18 +128,64 @@
                 <version>${log4j.version}</version>
                 <scope>compile</scope>
             </dependency>
+
+            <!-- Swagger UI 相关 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-annotations</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-models</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.5.21</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>1.5.21</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <repositories>
         <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone</url>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-        </repository>
-    </repositories>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

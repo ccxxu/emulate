@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@210.25.18.69:1521:orcl
+    username: ca
+    password: ciecc2020
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database: oracle
+    show-sql: true
+    properties:
+      dialect: org.hibernate.dialect.Oracle10gDialect
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+

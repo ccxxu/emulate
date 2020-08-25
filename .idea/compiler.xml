@@ -13,6 +13,7 @@
         <module name="nw-dev" />
         <module name="nw-gateway" />
         <module name="nw-generator" />
+        <module name="nw-log" />
         <module name="nw-oauth2" />
         <module name="nw-server" />
         <module name="nw-test" />
@@ -26,6 +27,7 @@
       <module name="nw-dev" target="1.8" />
       <module name="nw-gateway" target="1.8" />
       <module name="nw-generator" target="1.8" />
+      <module name="nw-log" target="1.8" />
       <module name="nw-oauth2" target="1.8" />
       <module name="nw-parent" target="1.8" />
       <module name="nw-server" target="1.8" />

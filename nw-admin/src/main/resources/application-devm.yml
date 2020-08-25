@@ -1,0 +1,53 @@
+debug: true
+spring:
+  devtools:
+    restart:
+      enabled: true
+  application:
+    name: nw-admin
+  freemarker:
+    cache: false
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    cache: false
+  jpa:
+    properties:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ca?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 1234
+  jackson:
+    serialization: true
+  main:
+    allow-bean-definition-overriding: true
+
+#spring.devtools.restart.exclude: WEB-INF/**
+
+server:
+  port: 8092
+  servlet:
+    session:
+      timeout: 3600
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8091/eureka/

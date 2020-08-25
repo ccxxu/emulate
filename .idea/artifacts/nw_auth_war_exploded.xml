@@ -10,12 +10,23 @@
           <element id="archive" name="nw-common-1.0-SNAPSHOT.jar">
             <element id="module-output" name="nw-common" />
           </element>
-          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-security:2.1.3.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.1.4.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.11" />
+          <element id="library" level="project" name="Maven: javax.el:javax.el-api:3.0.0" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.1.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.1.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.1.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.1.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.1.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.1.5.RELEASE" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:23.0" />
+          <element id="library" level="project" name="Maven: com.google.code.findbugs:jsr305:1.3.9" />
+          <element id="library" level="project" name="Maven: com.google.errorprone:error_prone_annotations:2.0.18" />
+          <element id="library" level="project" name="Maven: com.google.j2objc:j2objc-annotations:1.1" />
+          <element id="library" level="project" name="Maven: org.codehaus.mojo:animal-sniffer-annotations:1.14" />
+          <element id="library" level="project" name="Maven: cn.hutool:hutool-all:5.3.4" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/eu/bitwalker/UserAgentUtils/1.21/UserAgentUtils-1.21.jar" output-file-name="UseragentUtils-1.21.jar" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: org.glassfish.jaxb:jaxb-runtime:2.3.1" />
           <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.3.1" />
@@ -33,8 +44,6 @@
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.11.2" />
           <element id="library" level="project" name="Maven: org.slf4j:jul-to-slf4j:1.7.25" />
           <element id="library" level="project" name="Maven: javax.annotation:javax.annotation-api:1.3.2" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.1.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.23" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-json:2.1.3.RELEASE" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.8" />
@@ -45,11 +54,8 @@
           <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:9.0.16" />
           <element id="library" level="project" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.16" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.1.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-starter-oauth2:2.1.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-starter-oauth2:2.1.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.3.RELEASE" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.8" />
@@ -59,7 +65,8 @@
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:2.1.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.1.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security.oauth:spring-security-oauth2:2.3.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-data-redis:2.1.3.RELEASE" />
@@ -86,6 +93,7 @@
           <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-commons:2.1.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-rsa:1.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.cloud:spring-cloud-security:2.1.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-security:2.1.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.1.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.9.2" />
@@ -118,14 +126,11 @@
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.31" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.16" />
           <element id="library" level="project" name="Maven: io.springfox:springfox-swagger2:2.9.2" />
-          <element id="library" level="project" name="Maven: io.swagger:swagger-annotations:1.5.20" />
-          <element id="library" level="project" name="Maven: io.swagger:swagger-models:1.5.20" />
           <element id="library" level="project" name="Maven: io.springfox:springfox-spi:2.9.2" />
           <element id="library" level="project" name="Maven: io.springfox:springfox-core:2.9.2" />
           <element id="library" level="project" name="Maven: io.springfox:springfox-schema:2.9.2" />
           <element id="library" level="project" name="Maven: io.springfox:springfox-swagger-common:2.9.2" />
           <element id="library" level="project" name="Maven: io.springfox:springfox-spring-web:2.9.2" />
-          <element id="library" level="project" name="Maven: com.google.guava:guava:20.0" />
           <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.4.0" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE" />

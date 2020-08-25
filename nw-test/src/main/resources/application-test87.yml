@@ -1,0 +1,22 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /test
+security:
+  oauth2:
+    client:
+      client-id: Test87
+      client-secret: user123
+      access-token-uri: http://210.25.18.87:8080/wauth/oauth/token
+      user-authorization-uri: http://210.25.18.87:8080/wauth/oauth/authorize
+    resource:
+      jwt:
+        key-uri: http://210.25.18.87:8080/wauth/oauth/token_key
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
