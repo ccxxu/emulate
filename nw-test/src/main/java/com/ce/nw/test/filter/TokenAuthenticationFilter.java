@@ -19,6 +19,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+        System.out.println("test uri = "+httpServletRequest.getRequestURI());
         filterChain.doFilter(httpServletRequest,httpServletResponse);
     }
 

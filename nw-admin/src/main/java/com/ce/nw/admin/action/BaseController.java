@@ -11,8 +11,6 @@ import com.ce.nw.common.entity.AjaxResult;
 import com.ce.nw.common.entity.AjaxResult.Type;
 import com.ce.nw.common.util.StringUtil;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -24,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.beans.PropertyEditorSupport;
 import java.util.Date;
-import java.util.List;
 
 /**
  * web层通用数据处理

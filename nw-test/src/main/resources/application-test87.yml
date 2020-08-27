@@ -1,7 +1,7 @@
 server:
   port: 8082
   servlet:
-    context-path: /test
+    context-path: /ccx
 security:
   oauth2:
     client:
@@ -12,6 +12,8 @@ security:
     resource:
       jwt:
         key-uri: http://210.25.18.87:8080/wauth/oauth/token_key
+    sso:
+      login-path: /login1
 spring:
   main:
     allow-bean-definition-overriding: true

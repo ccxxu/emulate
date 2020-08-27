@@ -4,7 +4,7 @@
  */
 package com.ce.nw.log.repository;
 
-import com.ce.nw.log.domain.Log;
+import com.ce.nw.log.domain.RbacLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @date 2018-11-24
  */
 @Repository
-public interface LogRepository extends JpaRepository<Log,Long>, JpaSpecificationExecutor<Log> {
+public interface RbacLogRepository extends JpaRepository<RbacLog, String>, JpaSpecificationExecutor<RbacLog> {
 
     /**
      * 根据日志类型删除信息

@@ -65,7 +65,7 @@ public class RbacLog implements Serializable {
     @CreationTimestamp
     private Timestamp createTime;
 
-    public Log(String logType, Long time) {
+    public RbacLog(String logType, Long time) {
         this.logType = logType;
         this.time = time;
     }

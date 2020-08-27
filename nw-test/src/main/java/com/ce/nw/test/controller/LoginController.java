@@ -45,7 +45,8 @@ public class LoginController {
         return "index";
     }
 
-    @RequestMapping("/login")
+    /*
+    @RequestMapping("/login1")
     public String login(){
         System.out.println("aaaaaaaaaaaaaaaaaa");
         return "redirect:/";
@@ -56,7 +57,7 @@ public class LoginController {
         session.removeAttribute("username");
         return "redirect:/login";
     }
-
+*/
     @ResponseBody
     @GetMapping("/userme")
     public String principal() {

@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * @author ChengJianSheng
+ * @author ccx
  * @date 2019-03-03
  */
 @EnableOAuth2Sso
@@ -27,15 +27,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         if ("local".equals(environmentUtils.getActiveProfile())) {
+            System.out.println("local");
             http.authorizeRequests().anyRequest().permitAll();
         }else {
-            http.logout().logoutSuccessUrl("http://localhost:8080/logout")
+            System.out.println("no local");
+            http.logout().logoutSuccessUrl("http://210.25.18.87:8080/wauth/logout")
                     .and()
                     .authorizeRequests()
                     .anyRequest().authenticated()
                     .and()
                     .csrf().disable();
         }
+
     }
 }
 
