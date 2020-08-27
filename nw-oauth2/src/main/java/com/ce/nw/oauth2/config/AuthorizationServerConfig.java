@@ -5,6 +5,7 @@ import com.ce.nw.oauth2.filter.MyBasicAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -84,7 +85,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 // 开启 /oauth/check_token
                 .tokenKeyAccess("permitAll()")
                 // 开启 /oauth/token_key
-                .checkTokenAccess("isAuthenticated()")
+//                .checkTokenAccess("isAuthenticated()")
+                .checkTokenAccess("permitAll()")
                 .allowFormAuthenticationForClients();
 
     }
@@ -115,10 +117,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+/*
         TokenEnhancerChain chain = new TokenEnhancerChain();
         chain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter));
 //        chain.setTokenEnhancers(Arrays.asList(accessTokenConverter));
         endpoints.accessTokenConverter(accessTokenConverter);
+*/
+
 //        this.tokenStore = new JdbcTokenStore(dataSource);
 //        endpoints.tokenStore(jwtTokenStore()).authenticationManager(authenticationManager);
 //        endpoints.tokenStore(new JdbcTokenStore(dataSource))
@@ -138,33 +143,33 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints
                 .authenticationManager(authenticationManager)//认证管理器
                 .authorizationCodeServices(authorizationCodeServices)//授权码服务
-                .tokenStore(new JdbcTokenStore(dataSource))
-                .tokenEnhancer(chain)
+//                .tokenStore(new JdbcTokenStore(dataSource))
+//                .tokenEnhancer(chain)
+                .tokenServices(tokenService())
                 .allowedTokenEndpointRequestMethods(HttpMethod.POST,HttpMethod.GET);
     }
 
     //令牌管理服务
-    /*
+    @Primary
     @Bean
     public AuthorizationServerTokenServices tokenService() {
         DefaultTokenServices service=new DefaultTokenServices();
         service.setClientDetailsService(clientDetailsService);//客户端详情服务
         service.setSupportRefreshToken(true);//支持刷新令牌
-        service.setTokenStore(tokenStore);//令牌存储策略
+        service.setReuseRefreshToken(false);//
+        service.setTokenStore(new JdbcTokenStore(dataSource));//令牌存储策略
         //令牌增强
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
         tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter));
 //        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(accessTokenConverter));
         service.setTokenEnhancer(tokenEnhancerChain);
-
         service.setAccessTokenValiditySeconds(15); // 令牌默认有效期2小时
-        service.setRefreshTokenValiditySeconds(15); // 刷新令牌默认有效期3天
+        service.setRefreshTokenValiditySeconds(60); // 刷新令牌默认有效期3天
         return service;
     }
-    */
 
     @Bean
-    public AuthorizationCodeServices authorizationCodeServices(DataSource dataSource) {
+    public AuthorizationCodeServices authorizationCodeServices() {
         return new JdbcAuthorizationCodeServices(dataSource);//设置授权码模式的授权码如何存取
     }
 

@@ -35,8 +35,8 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private ClientDetailsService clientDetailsService;
 
-    @Autowired
-    private AuthorizationServerTokenServices authorizationServerTokenServices;
+//    @Autowired
+//    private AuthorizationServerTokenServices authorizationServerTokenServices;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -78,16 +78,16 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
 //            throw new UnapprovedClientAuthenticationException("clientSecret 不匹配"+clientId);
 //        }
         //密码授权 模式, 组建 authentication
-        Map<String, String> rp = new HashMap<>();
-        TokenRequest tokenRequest = new TokenRequest(rp, details.getClientId(), details.getScope(), "authorization_code");
-
-        OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(details);
-        OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request,authentication);
-        SecurityContextHolder.getContext().setAuthentication(oAuth2Authentication);
-        OAuth2AccessToken token = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
-        JSONObject jsonObject = (JSONObject) JSONObject.toJSON(token);
-        System.out.println("BasicFilter生成的令牌是:"+jsonObject.toString());
-        token.getValue();
+//        Map<String, String> rp = new HashMap<>();
+//        TokenRequest tokenRequest = new TokenRequest(rp, details.getClientId(), details.getScope(), "authorization_code");
+//
+//        OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(details);
+//        OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request,authentication);
+//        SecurityContextHolder.getContext().setAuthentication(oAuth2Authentication);
+//        OAuth2AccessToken token = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
+//        JSONObject jsonObject = (JSONObject) JSONObject.toJSON(token);
+//        System.out.println("BasicFilter生成的令牌是:"+jsonObject.toString());
+//        token.getValue();
 //        String json = EncryptUtil.decodeUTF8StringBase64(token);
         filterChain.doFilter(request,response);
     }

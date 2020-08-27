@@ -4,7 +4,10 @@ import com.ce.nw.test.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +27,9 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    @Autowired
+    private AuthorizationServerTokenServices authorizationServerTokenServices;
+
     @RequestMapping("/")
     public String index(Authentication auth) {
         System.out.println("============"+auth);
@@ -34,6 +40,13 @@ public class LoginController {
         Authentication userAuthentication = oAuth2Authentication.getUserAuthentication();
         //取出用户身份信息
         String principal = userAuthentication.getName();
+
+        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) oAuth2Authentication.getDetails();
+        System.out.println(details.getTokenValue());
+
+
+        OAuth2AccessToken token = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
+        System.out.println(token.getExpiresIn());
 
         //取出用户权限
         List<String> authorities = new ArrayList<>();

@@ -37,8 +37,8 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
     @Autowired
     private ClientDetailsService clientDetailsService;
 
-    @Autowired
-    private AuthorizationServerTokenServices authorizationServerTokenServices;
+//    @Autowired
+//    private AuthorizationServerTokenServices authorizationServerTokenServices;
 
 
     @Override
@@ -73,9 +73,9 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
         OAuth2Request oAuth2Request = tokenRequest.createOAuth2Request(clientDetails);
         OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request,authentication);
 
-        OAuth2AccessToken token = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
-
-        SecurityContextHolder.getContext().setAuthentication(oAuth2Authentication);
+//        OAuth2AccessToken token = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
+//
+//        SecurityContextHolder.getContext().setAuthentication(oAuth2Authentication);
 
         //判断是json 格式返回 还是 view 格式返回
         //将 authention 信息打包成json格式返回
