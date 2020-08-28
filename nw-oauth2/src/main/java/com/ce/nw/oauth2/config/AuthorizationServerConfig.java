@@ -39,9 +39,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private TokenStore tokenStore;
 
-//    @Autowired
-//    private MyClientDetailsService clientDetailsService;
-
     @Autowired
     private ClientDetailsService clientDetailsService;
 
@@ -82,9 +79,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         //开启 /oauth/check_token
 //        security.tokenKeyAccess("isAuthenticated()");
         security
-                // 开启 /oauth/check_token
-                .tokenKeyAccess("permitAll()")
                 // 开启 /oauth/token_key
+                .tokenKeyAccess("isAuthenticated()")
+                // 开启 /oauth/check_token
 //                .checkTokenAccess("isAuthenticated()")
                 .checkTokenAccess("permitAll()")
                 .allowFormAuthenticationForClients();
@@ -150,7 +147,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
     //令牌管理服务
-    @Primary
     @Bean
     public AuthorizationServerTokenServices tokenService() {
         DefaultTokenServices service=new DefaultTokenServices();

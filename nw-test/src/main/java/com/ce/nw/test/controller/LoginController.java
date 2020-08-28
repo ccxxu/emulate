@@ -4,6 +4,8 @@ import com.ce.nw.test.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
@@ -11,6 +13,7 @@ import org.springframework.security.oauth2.provider.token.AuthorizationServerTok
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +34,16 @@ public class LoginController {
     private AuthorizationServerTokenServices authorizationServerTokenServices;
 
     @RequestMapping("/")
-    public String index(Authentication auth) {
+    public String index(Authentication auth, HttpServletRequest request) {
         System.out.println("============"+auth);
         if(!(auth instanceof OAuth2Authentication)){
             return "";
         }
+
+        HttpSession session = request.getSession();
+        System.out.println(session.getMaxInactiveInterval());
+//        session.get
+
         OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) auth;
         Authentication userAuthentication = oAuth2Authentication.getUserAuthentication();
         //取出用户身份信息
@@ -45,8 +53,8 @@ public class LoginController {
         System.out.println(details.getTokenValue());
 
 
-        OAuth2AccessToken token = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
-        System.out.println(token.getExpiresIn());
+//        OAuth2AccessToken token = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
+//        System.out.println(token.getExpiresIn());
 
         //取出用户权限
         List<String> authorities = new ArrayList<>();

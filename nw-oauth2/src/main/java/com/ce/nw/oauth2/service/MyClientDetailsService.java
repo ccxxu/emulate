@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 /**
  *
  */
-@Component
+//@Component
 public final class MyClientDetailsService implements ClientDetailsService {
 
     @Autowired

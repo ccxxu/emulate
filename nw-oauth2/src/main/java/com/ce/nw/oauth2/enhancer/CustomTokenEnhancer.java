@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.common.OAuth2RefreshToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
@@ -23,8 +24,12 @@ public class CustomTokenEnhancer implements TokenEnhancer {
         Map<String, Object> additionInfo = new HashMap<>();
         additionInfo.put("principal", authentication.getPrincipal());
         ((DefaultOAuth2AccessToken) token).setAdditionalInformation(additionInfo);
+
         JSONObject jsonObject = (JSONObject) JSONObject.toJSON(token);
         System.out.println("Enhancer生成的令牌是:"+jsonObject.toString());
+
+        OAuth2RefreshToken ort = ((DefaultOAuth2AccessToken) token).getRefreshToken();
+        System.out.println("刷新令牌："+ort.getValue());
         return token;
     }
 

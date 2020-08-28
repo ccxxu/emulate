@@ -1,6 +1,5 @@
 package com.ce.nw.oauth2.filter;
 
-import com.alibaba.fastjson.JSONObject;
 import com.ce.nw.oauth2.domain.BaseResponse;
 import com.ce.nw.oauth2.domain.HttpResponse;
 import com.ce.nw.oauth2.utils.HttpUtils;
@@ -9,9 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.security.oauth2.provider.*;
-import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,8 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author 燕园夜雨
@@ -32,8 +27,8 @@ import java.util.Map;
 @Component
 public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private ClientDetailsService clientDetailsService;
+//    @Autowired
+//    private ClientDetailsService clientDetailsService;
 
 //    @Autowired
 //    private AuthorizationServerTokenServices authorizationServerTokenServices;
@@ -60,12 +55,12 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private void handle(HttpServletRequest request, HttpServletResponse response, String[] clientDetails,FilterChain filterChain) throws IOException, ServletException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            filterChain.doFilter(request,response);
-            return;
-        }
-        ClientDetails details = this.clientDetailsService.loadClientByClientId(clientDetails[0]);
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication != null && authentication.isAuthenticated()) {
+//            filterChain.doFilter(request,response);
+//            return;
+//        }
+//        ClientDetails details = this.clientDetailsService.loadClientByClientId(clientDetails[0]);
 
 //        UsernamePasswordAuthenticationToken token =
 //                new UsernamePasswordAuthenticationToken(details.getClientId(), details.getClientSecret(), details.getAuthorities());
@@ -123,10 +118,6 @@ public class MyBasicAuthenticationFilter extends OncePerRequestFilter {
 
 
         return params;
-    }
-
-    public void setClientDetailsService(ClientDetailsService clientDetailsService) {
-        this.clientDetailsService = clientDetailsService;
     }
 
 }

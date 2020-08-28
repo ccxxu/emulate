@@ -2,6 +2,9 @@ server:
   port: 8082
   servlet:
     context-path: /test
+    session:
+      timeout: 1m
+
 security:
   oauth2:
     client:
@@ -9,6 +12,8 @@ security:
       client-secret: user123
       access-token-uri: http://localhost:8080/oauth/token
       user-authorization-uri: http://localhost:8080/oauth/authorize
+      access-token-validity-seconds: 15
+      refresh-token-validity-seconds: 30
     resource:
       jwt:
         key-uri: http://localhost:8080/oauth/token_key

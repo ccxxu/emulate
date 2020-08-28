@@ -3,8 +3,12 @@ spring:
     active: test
 
 server:
-    port: 8080
-    connection-timeout: 600000
+  port: 8080
+  connection-timeout: 600000
+  servlet:
+    session:
+      timeout: 1m
+
 
 security:
     ignored: /resources/**, /webjars/**
