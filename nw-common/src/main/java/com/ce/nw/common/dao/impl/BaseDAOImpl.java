@@ -1,6 +1,6 @@
 package com.ce.nw.common.dao.impl;
 
-import com.ce.nw.common.dao.BaseDAO;
+import com.ce.nw.common.dao.IBaseDAO;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,7 +19,7 @@ import java.util.Set;
  * @date 2020-08-27
  */
 @Repository
-public class BaseDaoImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
+public class BaseDAOImpl<T, ID extends Serializable> implements IBaseDAO<T, ID> {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -41,8 +41,8 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
     @Transactional
     @Override
     public T findById(T t, ID id) {
-//        return entityManager.find(t.getClass(), id);
-        return null;
+        Class<T> tclass = (Class<T>) t.getClass();
+        return entityManager.find(tclass, id);
     }
 
     @Transactional
@@ -67,6 +67,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
         entityManager.close();
         return query.getSingleResult();
     }
+
     @Transactional
     @Override
     public List<T> findByMoreFiled(String tablename,LinkedHashMap<String,Object> map) {
@@ -89,6 +90,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
         entityManager.close();
         return listRe;
     }
+
     @Transactional
     @Override
     public List<T> findByMoreFiledpages(String tablename,LinkedHashMap<String,Object> map,int start,int pageNumber) {
@@ -113,6 +115,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
         entityManager.close();
         return listRe;
     }
+
     @Transactional
     @Override
     public List<T> findpages(String tablename, String filed, Object o, int start, int pageNumer) {
@@ -132,6 +135,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
 
         return list;
     }
+
     @Transactional
     @Override
     public boolean update(T entity) {
@@ -144,6 +148,7 @@ public class BaseDaoImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
         }
         return flag;
     }
+
     @Transactional
     @Override
     public Integer updateMoreFiled(String tablename, LinkedHashMap<String, Object> map) {

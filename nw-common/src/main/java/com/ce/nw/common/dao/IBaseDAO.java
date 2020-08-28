@@ -11,7 +11,7 @@ import java.util.List;
  * @Date 2020-08-27 13:51
  * @Version V1.0
  **/
-public interface BaseDAO<T, ID extends Serializable> {
+public interface IBaseDAO<T, ID extends Serializable> {
 
     /**
      * 保存数据对象
