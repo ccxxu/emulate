@@ -80,10 +80,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 //        security.tokenKeyAccess("isAuthenticated()");
         security
                 // 开启 /oauth/token_key
-                .tokenKeyAccess("isAuthenticated()")
+                .tokenKeyAccess("permitAll()")
                 // 开启 /oauth/check_token
 //                .checkTokenAccess("isAuthenticated()")
-                .checkTokenAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()")
                 .allowFormAuthenticationForClients();
 
     }

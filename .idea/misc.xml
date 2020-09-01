@@ -3,6 +3,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/nw-admin" />
     <file type="web" url="file://$PROJECT_DIR$/nw-auth" />
+    <file type="web" url="file://$PROJECT_DIR$/nw-client" />
     <file type="web" url="file://$PROJECT_DIR$/nw-dev" />
     <file type="web" url="file://$PROJECT_DIR$/nw-oauth2" />
     <file type="web" url="file://$PROJECT_DIR$/nw-test" />
@@ -22,6 +23,7 @@
         <option value="$PROJECT_DIR$/nw-dev/pom.xml" />
         <option value="$PROJECT_DIR$/nw-generator/pom.xml" />
         <option value="$PROJECT_DIR$/nw-log/pom.xml" />
+        <option value="$PROJECT_DIR$/nw-client/pom.xml" />
       </list>
     </option>
   </component>

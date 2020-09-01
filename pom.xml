@@ -19,6 +19,7 @@
         <module>nw-generator</module>
         <module>nw-test</module>
         <module>nw-log</module>
+        <module>nw-client</module>
     </modules>
     <packaging>pom</packaging>
     <description>nw统一认证服务</description>

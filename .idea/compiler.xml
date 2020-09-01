@@ -9,6 +9,7 @@
         <module name="nw" />
         <module name="nw-admin" />
         <module name="nw-auth" />
+        <module name="nw-client" />
         <module name="nw-common" />
         <module name="nw-dev" />
         <module name="nw-gateway" />
@@ -17,12 +18,14 @@
         <module name="nw-oauth2" />
         <module name="nw-server" />
         <module name="nw-test" />
+        <module name="nw-test (1)" />
         <module name="nw-user" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="nw-admin" target="1.8" />
       <module name="nw-auth" target="1.8" />
+      <module name="nw-client" target="1.8" />
       <module name="nw-common" target="1.8" />
       <module name="nw-dev" target="1.8" />
       <module name="nw-gateway" target="1.8" />
@@ -32,6 +35,7 @@
       <module name="nw-parent" target="1.8" />
       <module name="nw-server" target="1.8" />
       <module name="nw-test" target="1.8" />
+      <module name="nw-test (1)" target="1.8" />
       <module name="nw-user" target="1.8" />
       <module name="renren-generator" target="1.8" />
     </bytecodeTargetLevel>

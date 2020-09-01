@@ -9,6 +9,6 @@ server:
     session:
       timeout: 1m
 
-
 security:
-    ignored: /resources/**, /webjars/**
+  ignored: /resources/**, /webjars/**
+

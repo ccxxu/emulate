@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>会员列表</title>
+
+    <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+
+</head>
+<body>
+<h3>当前登录用户：<span th:text="${#authentication.name}"></span> | <a th:href="@{/logout}">退出</a></h3>
+<h2>这是书目管理列表页面</h2>
+<table class="table">
+    <tr>
+        <th>书名</th>
+        <th>作者</th>
+        <th>国籍</th>
+        <th>创建时间</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <td style="font-size: 20px;">薛定谔讲演录</td>
+        <td>薛定谔讲</td>
+        <td>奥地利</td>
+        <td>2019-10-31</td>
+        <td><a th:href="@{/member/detail}">详情</a> </td>
+    </tr>
+    <tr>
+        <td style="font-size: 20px;">热的解析理论-</td>
+        <td>傅里叶</td>
+        <td>法国</td>
+        <td>2019-11-01</td>
+        <td><a th:href="@{/member/detail}">详情</a> </td>
+    </tr>
+    <tr>
+        <td style="font-size: 20px;">自然哲学之数学原理</td>
+        <td>牛顿</td>
+        <td>英国</td>
+        <td>2019-03-03</td>
+        <td><a th:href="@{/member/detail}">详情</a> </td>
+    </tr>
+</table>
+</body>
+</html>

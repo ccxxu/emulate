@@ -2,8 +2,6 @@ server:
   port: 8082
   servlet:
     context-path: /test
-    session:
-      timeout: 1m
 
 security:
   oauth2:
@@ -14,14 +12,22 @@ security:
       user-authorization-uri: http://localhost:8080/oauth/authorize
       access-token-validity-seconds: 15
       refresh-token-validity-seconds: 30
+      resource-ids: test
     resource:
       jwt:
         key-uri: http://localhost:8080/oauth/token_key
+        key-value: ciecc2020
+      token-info-uri: http://localhost:8080/oauth/check_token
+      user-info-uri: http://localhost:8080/user
+      prefer-token-info: false
+  sessions: stateless
 spring:
   main:
     allow-bean-definition-overriding: true
+
 
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
+

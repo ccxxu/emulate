@@ -55,27 +55,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                // /login 和 /oauth/authorize 路径配置为不需要任何身份验证, 其他所有路径必须通过验证
-                .antMatchers("/login", "/oauth/authorize").permitAll()
-                // 其他请求都需要已认证
-                .anyRequest().authenticated()
-                .and()
-                // 使用表单登录
-                .formLogin()
-                // 自定义登录页面地址
-                .loginPage("/login")
-                // 验证表单的地址, 有过滤器 UsernamePasswordAuthenticationFilter 拦截处理
-                .loginProcessingUrl("/login")
-                .and()
-                .logout()
-                .logoutSuccessHandler(customLogoutSuccessHandler)
-                // 无效会话
-                .invalidateHttpSession(true)
-                // 清除身份验证
-                .clearAuthentication(true)
-                .and().csrf().disable().cors();
+        http.formLogin().loginPage("/login").permitAll()
+                .and().authorizeRequests()
+                .antMatchers("/oauth/**").permitAll()
+                .anyRequest().authenticated();
+//        http
+//                .authorizeRequests()
+//                // /login 和 /oauth/authorize 路径配置为不需要任何身份验证, 其他所有路径必须通过验证
+//                .antMatchers("/login", "/oauth/authorize").permitAll()
+//                // 其他请求都需要已认证
+//                .anyRequest().authenticated()
+//                .and()
+//                // 使用表单登录
+//                .formLogin()
+//                // 自定义登录页面地址
+//                .loginPage("/login")
+//                // 验证表单的地址, 有过滤器 UsernamePasswordAuthenticationFilter 拦截处理
+//                .loginProcessingUrl("/login")
+//                .and()
+//                .logout()
+//                .logoutSuccessHandler(customLogoutSuccessHandler)
+//                // 无效会话
+//                .invalidateHttpSession(true)
+//                // 清除身份验证
+//                .clearAuthentication(true)
+//                .and().csrf().disable().cors();
     }
 
     @Bean

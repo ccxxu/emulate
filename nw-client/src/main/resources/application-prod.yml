@@ -1,0 +1,22 @@
+server:
+  port: 8086
+  servlet:
+    context-path: /client
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-uri: http://localhost:8080/oauth/token_key
+        key-value: ciecc2020
+      token-info-uri: http://localhost:8080/oauth/check_token
+      user-info-uri: http://localhost:8080/user
+  sessions: stateless
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

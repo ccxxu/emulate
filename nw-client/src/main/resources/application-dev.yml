@@ -1,0 +1,27 @@
+debug: true
+
+server:
+  port: 8096
+  servlet:
+    context-path: /test
+
+security:
+    client:
+      client-id: test
+      client-secret: 123qwe
+      access-token-uri: http://localhost:8093/oauth/token
+      user-authorization-uri: http://localhost:8093/oauth/authorize
+      client-authentication-scheme: form
+      grant-type: authorization_code
+    resource:
+      token-info-uri: http://localhost:8093/oauth/check_token
+      prefer-token-info: true
+
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8091/eureka/
